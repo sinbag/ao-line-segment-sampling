@@ -1,7 +1,7 @@
 AOLineSegmentSampling
 =====================
 
-If you happen to use this source code in your research, please cite the code using the following entry:
+This source code is built on top of [PBRT-V3](http://pbrt.org). If you happen to use this source code in your research, please cite the code using the following entry:
 
 > @article{singh17variance,<br>
 >    author = "Singh, Gurprit and Miller, Bailey and Jarosz, Wojciech",<br>
@@ -64,47 +64,13 @@ make sure to choose the `cropwindow` that is one pixel wide (e.g. `[410 411 305 
 All the integrand power spectra added in the paper are directly computed
 from PBRT using `regular` sampler.
 
-pbrt, Version 3
-===============
-
-[![Build Status](https://travis-ci.org/mmp/pbrt-v3.svg?branch=master)](https://travis-ci.org/mmp/pbrt-v3)
-[![Build status](https://ci.appveyor.com/api/projects/status/mlm9g91ejxlcn67s/branch/master?svg=true)](https://ci.appveyor.com/project/mmp/pbrt-v3/branch/master)
-
-This repository holds the source code to the new version of pbrt that will
-be described in the forthcoming third edition of *Physically Based
-Rendering: From Theory to Implementation*, by [Matt
-Pharr](http://pharr.org/matt), [Wenzel
-Jakob](http://www.mitsuba-renderer.org/~wenzel/), and Greg Humphreys.  As
-before, the code is available under the BSD license.
-
-Please see the [User's Guide](http://pbrt.org/users-guide.html) for more
-information about how to check out and build the system as well as various
-additional information about working with pbrt.
-
-Example scenes
---------------
-
-Over 10GB of example scenes are available for download. (Many are new and
-weren't available with previous versions of pbrt.) We're trying an
-experiment and making them available via git. Run:
-```
-$ git clone git://git.pbrt.org/pbrt-v3-scenes
-```
-to get them. We will update this repository as more scenes become
-available. (See the `README.md.html file` in the scene distribution for
-more information about the scenes and preview images.)
-
-The [pbrt website](http://pbrt.org) has general information about
-both *Physically Based Rendering* as well as pbrt-v2, the previous version
-of the system.
-
-Building pbrt
+Building code
 -------------
 
-To check out pbrt together with all dependencies, be sure to use the
+To check out code together with all dependencies, be sure to use the
 `--recursive` flag when cloning the repository, i.e.
 ```bash
-$ git clone --recursive https://github.com/mmp/pbrt-v3/
+$ git clone --recursive https://github.com/sinbag/ao-line-segment-sampling.git
 ```
 If you accidentally already cloned pbrt without this flag (or to update an
 pbrt source tree after a new submodule has been added, run the following
@@ -112,6 +78,10 @@ command to also fetch the dependencies:
 ```bash
 $ git submodule update --init --recursive
 ```
+As mentioned before, we simply add our ambient occlusion using points, segments and line samples as different integrators in PBRT-V3. Please read below for more details about PBRT-V3.
+
+PBRT-V3
+-------
 pbrt uses [cmake](http://www.cmake.org/) for its build system.  On Linux
 and OS X, cmake is available via most package management systems.  For
 Windows, or to build it from source, see the [cmake downloads
