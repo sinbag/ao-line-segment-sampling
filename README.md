@@ -1,6 +1,24 @@
 AOLineSegmentSampling
 =====================
 
+If you happen to use this source code in your research, please cite the code using the following entry:
+
+> @article{singh17variance,<br>
+>    author = "Singh, Gurprit and Miller, Bailey and Jarosz, Wojciech",<br>
+>    title = "Variance and Convergence Analysis of Monte Carlo Line and Segment Sampling",<br>
+>    journal = "Computer Graphics Forum (Proceedings of EGSR)",<br>
+>    year = "2017",<br>
+>    volume = "36",<br>
+>    number = "4",<br>
+>    month = "June",<br>
+>    doi = "10.1111/cgf.13226",<br>
+>    publisher = "The Eurographics Association",<br>
+>    keywords = "stochastic sampling, signal processing, Fourier transform, Power spectrum"<br>
+>}
+
+Specifics
+---------
+
 Ambient Occlusion using points, segments and line samples is implemented as separate
 integrators in pbrtv3 (description below).
 ```
@@ -9,8 +27,6 @@ avls.cpp (Ambient Occlusion using segments)
 avl.cpp (Ambient Occlusion using lines)
 ```
 
-Specifics
----------
 Each pixel is sampled at the center and a ray is shot from the center of the
 pixel on the image plane (have a look at the `sampler.cpp` file).
 ```
