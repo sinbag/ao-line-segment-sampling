@@ -64,7 +64,7 @@ make sure to choose the `cropwindow` that is one pixel wide (e.g. `[410 411 305 
 All the integrand power spectra added in the paper are directly computed
 from PBRT using `regular` sampler.
 
-Building source code
+Getting Source Code
 --------------------
 
 To check out code together with all dependencies, be sure to use the
@@ -80,8 +80,8 @@ $ git submodule update --init --recursive
 ```
 As mentioned before, we simply add our ambient occlusion using points, segments and line samples as different integrators in PBRT-V3. Please read below for more details about PBRT-V3.
 
-PBRT-V3
--------
+Building Source Code
+--------------------
 pbrt uses [cmake](http://www.cmake.org/) for its build system.  On Linux
 and OS X, cmake is available via most package management systems.  For
 Windows, or to build it from source, see the [cmake downloads
