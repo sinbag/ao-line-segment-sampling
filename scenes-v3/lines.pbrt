@@ -1,0 +1,73 @@
+#Bailey Miller
+
+#first we set up the eye
+LookAt 1 1 10   0 0 -1  0 1 0 #ex ey ez lx ly lz ux uy uz
+
+#integrator
+Integrator "avl"
+	"integer numPhiSamples" [4]
+	"bool cosineWeighted" ["true"]
+
+Camera "perspective" "float fov" [40]
+
+Film "image" "string filename" ["lines.exr"]
+     "integer xresolution" [512] "integer yresolution" [512]
+
+Sampler "stratified" "bool jitter" ["false"] "integer xsamples" [1] "integer ysamples" [1]
+
+#begin describing scene
+WorldBegin
+
+#transform the world
+AttributeBegin
+
+	#Line of spheres starting on left (closest to farthest)
+	#define a sphere
+  AttributeBegin
+    Translate 0.75 0.125 7
+    Shape "sphere" "float radius" [0.125]
+  AttributeEnd
+
+	#define a sphere
+  AttributeBegin
+    Translate 1.25 0.25 6
+    Shape "sphere" "float radius" [0.25]
+  AttributeEnd
+
+	#define a sphere
+  AttributeBegin
+    Translate 1.75 0.6 4
+    Shape "sphere" "float radius" [0.5]
+  AttributeEnd
+
+ 	#define a sphere
+  AttributeBegin
+    Translate 1 1.5 0
+    Shape "sphere" "float radius" [1]
+  AttributeEnd
+
+ 	#define a sphere
+  AttributeBegin
+    Translate -1.5 2.5 -2
+    Shape "sphere" "float radius" [1.25]
+  AttributeEnd
+
+	#define a sphere
+  AttributeBegin
+    Translate -4.5 3.5 -2.5
+    Shape "sphere" "float radius" [1.5]
+  AttributeEnd
+
+	#Center Sphere
+	AttributeBegin
+		Translate 0 .75 4
+		Shape "sphere" "float radius" [.75]
+	AttributeEnd
+
+	#define a 'ground plane' sphere
+  AttributeBegin
+    Translate 0 -1000 0
+    Shape "sphere" "float radius" [1000]
+  AttributeEnd
+AttributeEnd
+WorldEnd

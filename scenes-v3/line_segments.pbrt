@@ -1,0 +1,86 @@
+#Bailey Miller
+
+#first we set up the eye
+LookAt 1 1 10   0 0 -1  0 1 0 #ex ey ez lx ly lz ux uy uz
+
+#integrator
+Integrator "avls"
+	"integer numPhiSamples" [4]
+	"integer numThetaSamples" [4]
+	"bool cosineWeightedSampling" ["false"]
+	"bool SolidAngleUniformSampling" ["false"]
+	"bool SphericalCoordinatesUniformSampling" ["true"]
+	"float lineSegmentLength" [1]
+	"bool visualizeIntegrand" ["false"] # if set to true then make sure your cropwindow is one pixel wide
+	"bool computeFourierSpectrum" ["false"]  # if set to true then make sure your cropwindow is one pixel wide
+
+#the camera
+Camera "perspective" "float fov" [40]
+
+#name the file
+Film "image" "string filename" ["segments.exr"]
+"integer xresolution" [512] "integer yresolution" [512]
+
+#"float cropwindow" [410 411 305 306]
+#"float cropwindow" [300 301 290 291]
+#"float cropwindow" [0 512 0 512]
+
+Sampler "stratified" "bool jitter" ["true"] "integer xsamples" [1] "integer ysamples" [1]
+
+
+#begin describing scene
+WorldBegin
+
+#transform the world
+AttributeBegin
+
+	#Line of spheres starting on left (closest to farthest)
+	#define a sphere
+  AttributeBegin
+    Translate 0.75 0.125 7
+    Shape "sphere" "float radius" [0.125]
+  AttributeEnd
+
+	#define a sphere
+  AttributeBegin
+    Translate 1.25 0.25 6
+    Shape "sphere" "float radius" [0.25]
+  AttributeEnd
+
+	#define a sphere
+  AttributeBegin
+    Translate 1.75 0.6 4
+    Shape "sphere" "float radius" [0.5]
+  AttributeEnd
+
+ 	#define a sphere
+  AttributeBegin
+    Translate 1 1.5 0
+    Shape "sphere" "float radius" [1]
+  AttributeEnd
+
+ 	#define a sphere
+  AttributeBegin
+    Translate -1.5 2.5 -2
+    Shape "sphere" "float radius" [1.25]
+  AttributeEnd
+
+	#define a sphere
+  AttributeBegin
+    Translate -4.5 3.5 -2.5
+    Shape "sphere" "float radius" [1.5]
+  AttributeEnd
+
+	#Center Sphere
+	AttributeBegin
+		Translate 0 .75 4
+		Shape "sphere" "float radius" [.75]
+	AttributeEnd
+
+	#define a 'ground plane' sphere
+  AttributeBegin
+    Translate 0 -1000 0
+    Shape "sphere" "float radius" [1000]
+  AttributeEnd
+AttributeEnd
+WorldEnd
