@@ -43,29 +43,29 @@ CameraSample Sampler::GetCameraSample(const Point2i &pRaster) {
 We only vary the number of secondary rays directly by passing it as an
 integrator parameter(s).
 
-New Samplers
-------------
+### New Samplers ###
+
 We added regular (grid) and multi-jittered samplers.
 You can also set `jitter [false]` in the stratified sampler to get
 regular grid samples.
 
-Visualize Integrand
--------------------
+### Visualize Integrand ###
+
 To visualize an integrand within a pixel, first define a cropwindow that is
 one pixel wide, set `visualizeIntegrand[true]`,
 choose a `regular` sampler and set the sample count to `262144` (in `points.pbrt
     set "integer numSecondarySamples" [262144]` whereas is `line_segments.pbrt
     set "integer numPhiSamples" [512] "integer numThetaSamples" [512]"`).
 
-Fourier Transform Integrand
----------------------------
+### Fourier Transform Integrand ###
+
 To visualize/compute the Fourier power spectrum of an integrand within a pixel,
 make sure to choose the `cropwindow` that is one pixel wide (e.g. `[410 411 305 306]`).
 All the integrand power spectra added in the paper are directly computed
 from PBRT using `regular` sampler.
 
-Building code
--------------
+Building source code
+--------------------
 
 To check out code together with all dependencies, be sure to use the
 `--recursive` flag when cloning the repository, i.e.
