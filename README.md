@@ -1,6 +1,24 @@
 AOLineSegmentSampling
 =====================
 
+This source code is built on top of [PBRT-V3](http://pbrt.org). If you happen to use this source code in your research, please cite the code using the following entry:
+
+> @article{singh17variance,<br>
+>    author = "Singh, Gurprit and Miller, Bailey and Jarosz, Wojciech",<br>
+>    title = "Variance and Convergence Analysis of Monte Carlo Line and Segment Sampling",<br>
+>    journal = "Computer Graphics Forum (Proceedings of EGSR)",<br>
+>    year = "2017",<br>
+>    volume = "36",<br>
+>    number = "4",<br>
+>    month = "June",<br>
+>    doi = "10.1111/cgf.13226",<br>
+>    publisher = "The Eurographics Association",<br>
+>    keywords = "stochastic sampling, signal processing, Fourier transform, Power spectrum"<br>
+>}
+
+Specifics
+---------
+
 Ambient Occlusion using points, segments and line samples is implemented as separate
 integrators in pbrtv3 (description below).
 ```
@@ -9,8 +27,6 @@ avls.cpp (Ambient Occlusion using segments)
 avl.cpp (Ambient Occlusion using lines)
 ```
 
-Specifics
----------
 Each pixel is sampled at the center and a ray is shot from the center of the
 pixel on the image plane (have a look at the `sampler.cpp` file).
 ```
@@ -27,68 +43,34 @@ CameraSample Sampler::GetCameraSample(const Point2i &pRaster) {
 We only vary the number of secondary rays directly by passing it as an
 integrator parameter(s).
 
-New Samplers
-------------
+### New Samplers ###
+
 We added regular (grid) and multi-jittered samplers.
 You can also set `jitter [false]` in the stratified sampler to get
 regular grid samples.
 
-Visualize Integrand
--------------------
+### Visualize Integrand ###
+
 To visualize an integrand within a pixel, first define a cropwindow that is
 one pixel wide, set `visualizeIntegrand[true]`,
 choose a `regular` sampler and set the sample count to `262144` (in `points.pbrt
     set "integer numSecondarySamples" [262144]` whereas is `line_segments.pbrt
     set "integer numPhiSamples" [512] "integer numThetaSamples" [512]"`).
 
-Fourier Transform Integrand
----------------------------
+### Fourier Transform Integrand ###
+
 To visualize/compute the Fourier power spectrum of an integrand within a pixel,
 make sure to choose the `cropwindow` that is one pixel wide (e.g. `[410 411 305 306]`).
 All the integrand power spectra added in the paper are directly computed
 from PBRT using `regular` sampler.
 
-pbrt, Version 3
-===============
+Getting Source Code
+--------------------
 
-[![Build Status](https://travis-ci.org/mmp/pbrt-v3.svg?branch=master)](https://travis-ci.org/mmp/pbrt-v3)
-[![Build status](https://ci.appveyor.com/api/projects/status/mlm9g91ejxlcn67s/branch/master?svg=true)](https://ci.appveyor.com/project/mmp/pbrt-v3/branch/master)
-
-This repository holds the source code to the new version of pbrt that will
-be described in the forthcoming third edition of *Physically Based
-Rendering: From Theory to Implementation*, by [Matt
-Pharr](http://pharr.org/matt), [Wenzel
-Jakob](http://www.mitsuba-renderer.org/~wenzel/), and Greg Humphreys.  As
-before, the code is available under the BSD license.
-
-Please see the [User's Guide](http://pbrt.org/users-guide.html) for more
-information about how to check out and build the system as well as various
-additional information about working with pbrt.
-
-Example scenes
---------------
-
-Over 10GB of example scenes are available for download. (Many are new and
-weren't available with previous versions of pbrt.) We're trying an
-experiment and making them available via git. Run:
-```
-$ git clone git://git.pbrt.org/pbrt-v3-scenes
-```
-to get them. We will update this repository as more scenes become
-available. (See the `README.md.html file` in the scene distribution for
-more information about the scenes and preview images.)
-
-The [pbrt website](http://pbrt.org) has general information about
-both *Physically Based Rendering* as well as pbrt-v2, the previous version
-of the system.
-
-Building pbrt
--------------
-
-To check out pbrt together with all dependencies, be sure to use the
+To check out code together with all dependencies, be sure to use the
 `--recursive` flag when cloning the repository, i.e.
 ```bash
-$ git clone --recursive https://github.com/mmp/pbrt-v3/
+$ git clone --recursive https://github.com/sinbag/ao-line-segment-sampling.git
 ```
 If you accidentally already cloned pbrt without this flag (or to update an
 pbrt source tree after a new submodule has been added, run the following
@@ -96,6 +78,10 @@ command to also fetch the dependencies:
 ```bash
 $ git submodule update --init --recursive
 ```
+As mentioned before, we simply add our ambient occlusion using points, segments and line samples as different integrators in PBRT-V3. Please read below for more details about PBRT-V3.
+
+Building Source Code
+--------------------
 pbrt uses [cmake](http://www.cmake.org/) for its build system.  On Linux
 and OS X, cmake is available via most package management systems.  For
 Windows, or to build it from source, see the [cmake downloads
